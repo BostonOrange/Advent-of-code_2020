@@ -1,0 +1,55 @@
+years = open('numbers.txt')
+
+lines = years.read().split()
+numbers = [int(x) for x in lines]
+
+n_numbers = len(numbers)
+numbers.sort()
+
+target = 2020
+
+############################# Part one #############################
+
+def printPairs(arr, n, target):
+    for i in range(0, n ):
+        for j in range(i + 1, n ):
+            if (arr[i] + arr[j] == target):
+                print('pairs')
+                print("(", arr[i], 
+                      ", ", arr[j], 
+                      ")", sep = "")
+                print('sum value is', arr[i]+arr[j])
+                print('multiplied value is', arr[i]*arr[j])
+
+results_p = printPairs(numbers, n_numbers, target)
+
+############################# Part two #############################
+print('')
+print('Part two')
+print('')
+############################# Part two #############################
+
+def printAllTriplets(arr, n, target):
+ 
+    for i in range(n - 2):
+        k = target - arr[i]
+        (low, high) = (i + 1, n - 1)
+ 
+        while low < high:
+ 
+            if arr[low] + arr[high] < k:
+                low = low + 1
+ 
+            elif arr[low] + arr[high] > k:
+                high = high - 1
+
+            else:
+                print('Triples')
+                print((arr[i], arr[low], arr[high]))
+                print('sum value is', arr[i]+arr[low]+arr[high])
+                print('Multiplied value is', arr[i]*arr[low]*arr[high])
+ 
+                low = low + 1
+                high = high - 1
+
+results_t = printAllTriplets(numbers, n_numbers, target)
